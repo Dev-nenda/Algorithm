@@ -3,21 +3,24 @@
 # 모두 다른 눈 (그 중 가장 큰 눈)x100
 
 T = int(input())
-answer = 0
+
+max_prize = 0
 
 for _ in range(T):
-    a, b, c = map(int, input().split())
-    
-    if a == b == c:
-        answer = max(answer, 10000+a*1000)
-    elif a == b:
-        answer = max(answer, 1000+a*100)
-    elif a == c:
-        answer = max(answer, 1000+a*100)
-    elif b == c:
-        answer = max(answer, 1000+b*100)
-    else:
-        answer = max(answer, 100 * max(a,b,c))
+    dice = list(map(int, input().split()))
 
-print(answer)
+    if dice[0] == dice[1] == dice[2]:
+        max_prize = max(max_prize, 10000 + dice[0]*1000)
+
+    elif dice[0] == dice[1] or dice[0] == dice[2]:
+        max_prize = max(max_prize, 1000 + dice[0] * 100)
+
+    elif dice[1] == dice[2]:
+        max_prize = max(max_prize, 1000 + dice[1] * 100)
+
+    else:
+        max_prize = max(max_prize, 100 * max(dice))
+
+print(max_prize)
+        
         
